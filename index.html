@@ -10,20 +10,20 @@
 </body>
 <script src="https://unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
-<script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
   const root = document.getElementById("root")
-  const span = React.createElement("h3",
-  {id:'title',
-    onMouseEnter:() => console.log('mouse'),}
-  , "hello")
+  
 
+  const Title =() => (<h3 id='title' key="title" onMouseEnter={() => console.log('mouse')}>Hello</h3>)
+  const Button =() => (<button key="button" style={{backgroundColor: 'tomato'}} onClick={() => console.log('cLick')}>Click</button>)
 
-  const btn = React.createElement("button",{
-    style:{backgroundColor: 'tomato'},
-    onClick:() => console.log('cLick')
-  },"Click me")
-  const container = React.createElement('div',null,[span,btn])
-  ReactDOM.render(container, root)
+  // const container = React.createElement('div',null,[Title,Button])
+  const Container = <div>
+    <Title />
+    <Button />
+    </div>
+  ReactDOM.render(Container, root)
 
 </script>
 </html>
