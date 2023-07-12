@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.getElementById("root")
+  function MinutesToHours(){
+    const [minutes, setMinutes] = React.useState(0)
+    const [flipped, setFlipped] = React.useState(false)
+    const onChange = (event)=>{
+      setMinutes(event.target.value)
+    }
+
+    const onChangeHours = (event) =>{
+      setMinutes(event.target.value *60)
+    }
+    const reset = (evnet) =>{
+      setMinutes(0)
+    }
+    const onFlipped = (event) =>{
+      setFlipped(current => !current)
+    }
+    return (
+      <div>
+      <div>
+        <h1>super converter</h1>
+        <label htmlFor='minutes'>Minutes</label>
+        <input 
+          value={minutes}
+          id='minutes'
+          placeholder="Minutes"
+          type="number"
+          onChange={onChange}
+          disabled={!flipped}
+          />
+
+      </div>
+      <div>
+        <label htmlFor='hours'>Hours</label>
+        <input value={Math.round(minutes/60)} id='hours' placeholder="Hours" type="number"  onChange={onChangeHours} disabled={flipped}/>
+        
+      </div>
+      <button onClick={reset}>reset</button>
+      <button onClick={onFlipped}>Flip</button>
+
+      </div>
+    )
+  }
+  
+
+
+  function SecondsToHours(){
+
+    const [hours,setTimes] = React.useState(0)
+    const [seconds,setSeconds] = React.useState(0)
+    const onChangeTimes = (event)=>{
+
+      setTimes(event.target.value)
+      setSeconds(event.target.value*3600)
+
+    }
+    const onChangeSeconds = (event) =>{
+      setSeconds(event.target.value)
+      setTimes(Math.round(event.target.value/3600))
+    }
+    return(
+
+    <div>
+      <div>
+      <label htmlFor="Times">hours</label>
+      <input placeholder='Times' value={hours} id='times' type="number" onChange={onChangeTimes}/>
+    </div>
+    <div>
+      <label htmlFor="seconds">seconds</label>
+      <input placeholder='Seconds' value={seconds} id='seconds' type="number" onChange={onChangeSeconds}/>
+      </div>
+    </div>
+  )}
+  
+  function App(){
+    const [idx,setIdx] = React.useState("0")
+    const onSelect = (event) =>{
+      setIdx(event.target.value)
+
+    }
+    return (
+    <div>
+      <select value={idx} onChange={onSelect}>
+        <option value="0">MToH</option>
+        <option value="1">HToS</option>
+
+        </select>
+       {idx === "0" ? <MinutesToHours /> : null}
+       {idx === "1" ? <SecondsToHours /> : null}
+       
+
+
+        
+
+      </div>)
+  }
+  ReactDOM.render(<App />,root)
+</script>
+</html>
