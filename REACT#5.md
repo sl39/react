@@ -1,4 +1,5 @@
 ## REACT#5
+
 > 리액트 프로젝트를 만들 수 있는 도구
 
 1. node js
@@ -16,3 +17,7 @@
 - 생성된 app으로 이동
 - yarn으로 프로젝트 시작
 - yarn start
+6. PropTypes 설치
+- 타입들 지정해주는 모듈
+
+- yarn add prop-types
